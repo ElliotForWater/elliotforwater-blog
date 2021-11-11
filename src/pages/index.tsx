@@ -23,7 +23,7 @@ export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
   const { blogEntryCollection } = await fetchContenful(
     'blog',
     `{
-      blogEntryCollection(limit: 10)  {
+      blogEntryCollection  {
         items {
           slug,
           title,
@@ -44,18 +44,13 @@ export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
             name,
             bio,
             jobTitle,
-            socialLinksCollection {
-              items {
-                name,
-                link
-              }
-            }
           },
-          publishDate,
+          publishDate
         }
       }
     }`
   )
+
 
   const posts = blogEntryCollection.items
   const pagination: IPaginationProps = {};
@@ -63,6 +58,7 @@ export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
   if (posts.length > Config.pagination_size) {
     pagination.next = '/page2';
   }
+
 
   return {
     props: {

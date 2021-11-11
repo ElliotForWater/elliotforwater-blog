@@ -10,6 +10,7 @@ export type IBlogGalleryProps = {
 };
 
 const BlogGallery = (props: IBlogGalleryProps) => {
+  
   return (
   <div className="w-full bg-gray-200">
     <div className="max-w-screen-xl px-3 py-12 mx-auto">

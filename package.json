@@ -2,13 +2,15 @@
   "name": "next-js-boilerplate",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 4000",
     "build": "next build",
-    "start": "next start",
-    "build-stats": "ANALYZE=true npm run build",
+    "build:stage": "env-cmd -f .env.staging run-s clean build export",
+    "build:prod": "env-cmd -f .env.production run-s clean build export",
+    "start:stage": "env-cmd -f .env.staging next start",
+    "start": "env-cmd -f .env.production next start",
     "export": "next export -o dist",
-    "build-prod": "run-s clean build export",
     "clean": "rimraf .next dist",
+    "build-stats": "ANALYZE=true npm run build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
   "dependencies": {
@@ -29,14 +31,15 @@
     "unified": "^9.2.1"
   },
   "devDependencies": {
-    "@contentful/rich-text-types": "^15.5.1",
     "@contentful/rich-text-html-renderer": "^15.5.1",
     "@contentful/rich-text-react-renderer": "^15.5.1",
+    "@contentful/rich-text-types": "^15.5.1",
     "@next/bundle-analyzer": "^10.0.9",
     "@types/node": "^14.14.35",
     "@types/react": "^17.0.3",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "autoprefixer": "^10.2.5",
+    "env-cmd": "^10.1.0",
     "eslint": "^7.22.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-plugin-import": "^2.22.1",

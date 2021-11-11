@@ -1,4 +1,4 @@
-// const contentfulUrl = process.env.NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL
+const contentfulUrl = process.env.NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL
 const space = process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID
 const accessToken = process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN
 const mockContentful = process.env.MOCK_CONTENTFUL
@@ -9,7 +9,7 @@ export async function fetchContenful(page: string, query: string) {
     return await import(`../../__mocks__/contentful/${page}.js`)
   } else {
     try {
-      const res = await fetch(`https://graphql.contentful.com/content/v1/spaces/${space}/environments/master`, {
+      const res = await fetch(`${contentfulUrl}${space}/environments/master`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
