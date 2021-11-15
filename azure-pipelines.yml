@@ -1,0 +1,32 @@
+# Starter pipeline
+- task: AzureStaticWebApp@0
+  inputs:
+    app_location: '/'
+    output_location: 'dist'
+    api_location: 'api'
+    azure_static_web_apps_api_token: '9bab02021f35fc268770f3cd48353635a4b4d643ad3c842f90857cae32d349ae0-bcef7e1b-023d-4070-b6cd-a709d1ac321e00349152'
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: Npm@1
+    displayName: 'npm install'
+    inputs:
+      verbose: false
+- task: Npm@1
+  displayName: 'npm run build:stage'
+  env:
+    NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: $(NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN)
+    NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL: $(NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL)
+    NEXT_PUBLIC_CONTENTFUL_SPACE_ID: $(NEXT_PUBLIC_CONTENTFUL_SPACE_ID)
+  inputs:
+    command: custom
+    verbose: false
+    customCommand: 'run build:stage'
