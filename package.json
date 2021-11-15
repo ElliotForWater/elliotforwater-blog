@@ -1,16 +1,16 @@
 {
-  "name": "next-js-boilerplate",
+  "name": "elliotforwater-blog",
   "version": "1.0.0",
   "scripts": {
     "dev": "next -p 4000",
-    "build": "next build",
-    "build:stage": "env-cmd -f .env.staging run-s clean build export",
-    "build:prod": "env-cmd -f .env.production run-s clean build export",
+    "just-build": "next build",
+    "build:stage": "env-cmd -f .env.staging run-s clean just-build export",
+    "build:prod": "env-cmd -f .env.production run-s clean just-build export",
     "start:stage": "env-cmd -f .env.staging next start",
     "start": "env-cmd -f .env.production next start",
     "export": "next export -o dist",
     "clean": "rimraf .next dist",
-    "build-stats": "ANALYZE=true npm run build",
+    "build-stats": "ANALYZE=true npm run just-build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
   "dependencies": {
