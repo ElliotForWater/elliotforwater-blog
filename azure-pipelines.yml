@@ -9,14 +9,25 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+  - checkout: self
+    submodules: true
+    
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |        
+        npm install 
+        npm run build:prod
+    env:
+      NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: $(NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN)
+      NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL: $(NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL)
+      NEXT_PUBLIC_CONTENTFUL_SPACE_ID: $(NEXT_PUBLIC_CONTENTFUL_SPACE_ID)
+
   - task: AzureStaticWebApp@0
     inputs:
       app_location: "/"
-      app_build_command: 'npm run build:prod'
+      app_build_command: 'echo 1'
       api_location: "api"
       output_location: "dist"
     env:
       azure_static_web_apps_api_token: $(DEPLOYMENT_TOKEN)
-      NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: $(NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN)
-      NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL: $(NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL)
-      NEXT_PUBLIC_CONTENTFUL_SPACE_ID: $(NEXT_PUBLIC_CONTENTFUL_SPACE_ID)
