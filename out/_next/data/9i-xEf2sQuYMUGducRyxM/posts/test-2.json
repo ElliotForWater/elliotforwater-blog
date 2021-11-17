@@ -1,0 +1,56 @@
+{
+  "pageProps": {
+    "slug": "test-2",
+    "title": "Another amazing post on water",
+    "heroImage": {
+      "url": "https://images.ctfassets.net/3qtdrevau8ui/5hMuK9cWqpVntZ21DhF4YE/0e8ecd0dee4f147b95d84350488d39cb/2.png",
+      "title": "Water Project Guinea Bissau"
+    },
+    "socialDescription": "some amazing stuff for google and facebook",
+    "content": {
+      "json": {
+        "data": {},
+        "content": [
+          {
+            "data": {},
+            "content": [
+              { "data": {}, "marks": [], "value": "haldfhjklad adjglfkadjl w;rj;a lefjladjf ", "nodeType": "text" },
+              { "data": {}, "marks": [{ "type": "bold" }], "value": "adjglajdgkj", "nodeType": "text" }
+            ],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": {},
+            "content": [{ "data": {}, "marks": [{ "type": "bold" }], "value": "", "nodeType": "text" }],
+            "nodeType": "paragraph"
+          },
+          {
+            "data": { "target": { "sys": { "id": "quXm2l3QgOd9aFdGUnKws", "type": "Link", "linkType": "Asset" } } },
+            "content": [],
+            "nodeType": "embedded-asset-block"
+          },
+          {
+            "data": {},
+            "content": [{ "data": {}, "marks": [], "value": "", "nodeType": "text" }],
+            "nodeType": "paragraph"
+          }
+        ],
+        "nodeType": "document"
+      }
+    },
+    "tags": [{ "name": "water" }, { "name": "water issues" }],
+    "author": {
+      "name": "Gio",
+      "bio": "This is my bio  ",
+      "jobTitle": "writer",
+      "socialLinksCollection": {
+        "items": [
+          { "name": "personal", "link": "https://designbygio.it" },
+          { "name": "twitter", "link": "https://twitter.com/designbygio" }
+        ]
+      }
+    },
+    "publishDate": "2021-11-08T11:00:00.000+01:00"
+  },
+  "__N_SSG": true
+}

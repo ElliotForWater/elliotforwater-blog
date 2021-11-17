@@ -1,3 +1,28 @@
+:root {
+  --elliotPrimary: #72afd4;
+  --elliotSecondary: #577399;
+  --elliotTealBlue: #287896;
+  --elliotCta: #ffa62b;
+  --elliotCtaHover: #d5861a;
+  --elliotVisited: #7e359e;
+  --elliotLinkSearch: #1a0dab;
+  --dimGrey: #999;
+  --lighterGrey: #f0f0f0;
+  --lightGreyBackground: #f7f7f7;
+  --lightAzureBackground: #f7f7ff;
+  --lightGrey: #e8e8e8;
+  --textColor: #333;
+  --error: #ad081b;
+  --fontCommon: 'Arial', 'Arial Bold', 'Gadget', sans-serif;
+  --fontBlack: 'Arial Black', 'Arial Bold', 'Gadget', sans-serif;
+  --zindex0: 0;
+  --zindex10: 10;
+  --zindex50: 50;
+  --zindex100: 100;
+  --zindex200: 200;
+  --zindex300: 300;
+}
+
 @tailwind base;
 
 @tailwind components;
