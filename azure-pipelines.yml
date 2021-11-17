@@ -28,6 +28,6 @@ steps:
       app_location: "/"
       app_build_command: 'echo 1'
       api_location: "api"
-      output_location: "dist"
+      output_location: "out"
     env:
       azure_static_web_apps_api_token: $(DEPLOYMENT_TOKEN)
