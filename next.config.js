@@ -12,9 +12,9 @@ module.exports = withBundleAnalyzer({
   env: {
     baseUrl: baseUrl,
   },
-  exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
-    return {
-      '/blog': { page: '/' },
-    }
-  },
+  // exportPathMap: async function (defaultPathMap, { dev, dir, outDir, distDir, buildId }) {
+  //   return {
+  //     '/blog': { page: '/blog' }
+  //   }
+  // },
 })
