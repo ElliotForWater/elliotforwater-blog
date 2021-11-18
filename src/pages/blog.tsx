@@ -10,7 +10,7 @@ import { Base } from '../templates/Base'
 import { Config } from '../utils/Config'
 import fetchContenful from '../utils/fetchContentful'
 
-const Index = (props: IBlogGalleryProps) => (
+const Blog = (props: IBlogGalleryProps) => (
   <Base
     meta={<Meta title={Config.title} description={Config.description} />}
     hero={<Hero title={Config.title} description={Config.description} />}
@@ -66,4 +66,4 @@ export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
   }
 }
 
-export default Index
+export default Blog
