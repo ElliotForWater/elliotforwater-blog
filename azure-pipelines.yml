@@ -1,33 +1,29 @@
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-  - develop
-
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
+  demands: npm
 
 steps:
-  - checkout: self
-    submodules: true
-    
-  - task: Bash@3
+  - task: Npm@1
+    displayName: 'npm install'
     inputs:
-      targetType: 'inline'
-      script: |        
-        npm install 
-        npm run build:prod
+      verbose: false
+
+  - task: Npm@1
+    displayName: 'npm run build:stage'
     env:
       NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: $(NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN)
       NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL: $(NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL)
       NEXT_PUBLIC_CONTENTFUL_SPACE_ID: $(NEXT_PUBLIC_CONTENTFUL_SPACE_ID)
-
-  - task: AzureStaticWebApp@0
     inputs:
-      app_location: "/"
-      app_build_command: 'echo 1'
-      api_location: "api"
-      output_location: "out"
-    env:
-      azure_static_web_apps_api_token: $(DEPLOYMENT_TOKEN)
+      command: custom
+      verbose: false
+      customCommand: 'run build:stage'
+
+  - task: ArchiveFiles@2
+    displayName: 'Archive Files'
+    inputs:
+      rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+      includeRootFolder: false
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
