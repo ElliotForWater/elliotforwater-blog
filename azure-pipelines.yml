@@ -9,15 +9,31 @@ steps:
       verbose: false
 
   - task: Npm@1
-    displayName: 'npm run build:prod'
+    displayName: 'npm run build:stage'
     env:
       NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: $(NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN)
       NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL: $(NEXT_PUBLIC_CONTENTFUL_GRAPHQL_URL)
       NEXT_PUBLIC_CONTENTFUL_SPACE_ID: $(NEXT_PUBLIC_CONTENTFUL_SPACE_ID)
+      BING_SEARCH_KEY: $(BING_SEARCH_DEV_KEY)
     inputs:
       command: custom
       verbose: false
-      customCommand: 'run build:prod'
+      customCommand: 'run build:stage'
+
+  - task: Npm@1
+    displayName: 'npm run export'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: 'run export'
+    enabled: false
+
+  - task: Npm@1
+    displayName: 'npm run test'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: 'run test'
 
   - task: ArchiveFiles@2
     displayName: 'Archive Files'
