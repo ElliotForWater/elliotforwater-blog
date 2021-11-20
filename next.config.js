@@ -6,5 +6,5 @@ const baseUrl = '/blog'
 
 module.exports = withBundleAnalyzer({
   basePath: baseUrl,
-  assetPrefix: '/',
+  assetPrefix: '/blog',
 })
