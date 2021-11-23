@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { isBrowser } from '../helpers/_utils'
+import { isBrowser } from '../helpers/_util'
 
 export function useWindowResize() {
   function getSize() {
