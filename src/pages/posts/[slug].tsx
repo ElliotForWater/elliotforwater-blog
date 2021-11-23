@@ -96,7 +96,8 @@ export const getStaticProps: GetStaticProps<IPostProps> = async ({ params }) => 
             },
             tagsCollection {
               items {
-                name
+                name,
+                slug
               }
             },
             author {

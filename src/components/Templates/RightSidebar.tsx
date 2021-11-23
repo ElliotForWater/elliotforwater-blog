@@ -6,7 +6,6 @@ import { SidebarBlock } from '../Sidebar/SidebarBlock'
 // import { SidebarIconList } from '../sidebar/SidebarIconList';
 // import { Config } from '../utils/Config';
 import { PostItems } from '../../helpers/_content'
-import { convertToSlug } from '../../helpers/_url'
 import { Base } from './Base'
 
 type IMainProps = {
@@ -62,11 +61,9 @@ const RightSidebar = (props: IMainProps) => (
             <ul>
               {props.categoryCollection.map((tag, index) => (
                 <li key={index} className='py-4 border-b border-gray-400 last:border-none'>
-                  <Link href='/category/[name]' as={`/category/${convertToSlug(tag.name)}`}>
+                  <Link href='/category/[name]' as={`/category/${tag.slug}`}>
                     <a className='flex justify-between hover:text-gray-800'>
                       <div>{tag.name}</div>
-
-                      {/* <div>{elt[1].length}</div> */}
                     </a>
                   </Link>
                 </li>
