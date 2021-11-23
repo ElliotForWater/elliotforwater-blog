@@ -2,13 +2,13 @@ import React from 'react'
 
 import { GetStaticProps } from 'next'
 
-import { BlogGallery, IBlogGalleryProps } from '../blog/BlogGallery'
-import { Hero } from '../hero/Hero'
-import { Meta } from '../layout/Meta'
-import { IPaginationProps } from '../pagination/Pagination'
-import { Base } from '../templates/Base'
-import { Config } from '../utils/Config'
-import fetchContenful from '../utils/fetchContentful'
+import { BlogGallery, IBlogGalleryProps } from '../components/Blogs/BlogGallery'
+import { Hero } from '../components/Hero/Hero'
+import { Meta } from '../components/Layout/Meta'
+import { IPaginationProps } from '../components/Pagination/Pagination'
+import { Base } from '../components/Templates/Base'
+import { Config } from '../helpers/_config'
+import fetchContenful from '../helpers/_fetchContentful'
 
 const Blog = (props: IBlogGalleryProps) => (
   <Base

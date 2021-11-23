@@ -1,77 +1,65 @@
-import React from 'react';
-
-import { GetStaticPaths, GetStaticProps } from 'next';
-
-import { BlogGallery, IBlogGalleryProps } from '../../blog/BlogGallery';
-import { Hero } from '../../hero/Hero';
-import { Meta } from '../../layout/Meta';
-import { Base } from '../../templates/Base';
-import { Config } from '../../utils/Config';
-import { getCategoryCollection } from '../../utils/Content';
-import { convertToSlug } from '../../utils/Url';
+import React from 'react'
+import { GetStaticProps } from 'next'
+import { BlogGallery, IBlogGalleryProps } from '../../components/Blogs/BlogGallery'
+import { Hero } from '../../components/Hero/Hero'
+import { Meta } from '../../components/Layout/Meta'
+import { Base } from '../../components/Templates/Base'
+import { Config } from '../../helpers/_config'
+// import { getCategoryCollection } from '../../helpers/_content'
+// import { convertToSlug } from '../../helpers/_url'
+import fetchContenful from '../../helpers/_fetchContentful'
 
 type ICategoryUrl = {
-  name: string;
-};
+  name: string
+}
 
 type IDisplayPostProps = {
-  categoryName: string;
-  gallery: IBlogGalleryProps;
-};
+  categoryName: string
+  gallery: IBlogGalleryProps
+}
 
 const DisplayPost = (props: IDisplayPostProps) => (
   <Base
     meta={<Meta title={`Category ${props.categoryName}`} description={Config.description} />}
-    hero={(
-      <Hero
-        title={`Category ${props.categoryName}`}
-        description={`${props.categoryName} ${Config.description}`}
-      />
-    )}
+    hero={<Hero title={`Category ${props.categoryName}`} description={`${props.categoryName} ${Config.description}`} />}
   >
     <BlogGallery posts={props.gallery.posts} />
   </Base>
-);
+)
 
-export const getStaticPaths: GetStaticPaths<ICategoryUrl> = async () => {
-  const categoryCollection = getCategoryCollection(['slug', 'tags']);
+// export const getStaticPaths: GetStaticPaths<ICategoryUrl> = async () => {
+//   const categoryCollection = getCategoryCollection(['slug', 'tags']);
+
+//   return {
+//     paths: categoryCollection.map((category) => ({
+//       params: {
+//         name: convertToSlug(category[0]),
+//       },
+//     })),
+//     fallback: false,
+//   }
+// }
+
+export const getStaticProps: GetStaticProps<IDisplayPostProps, ICategoryUrl> = async ({ params }) => {
+  console.log({ params })
+  const { tag } = await fetchContenful(
+    'post',
+    `{
+      tag(where: { name: "${params!.name}" }, limit: 1) {
+        items {
+          name
+        }
+      }
+    }`
+  )
+
+  const category = tag.items[0]
 
   return {
-    paths: categoryCollection.map((category) => ({
-      params: {
-        name: convertToSlug(category[0]),
-      },
-    })),
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps<IDisplayPostProps, ICategoryUrl> = async ({
-  params,
-}) => {
-  const categoryCollection = getCategoryCollection([
-    'slug',
-    'title',
-    'description',
-    'image',
-    'date',
-    'tags',
-  ]);
-
-  const category = categoryCollection.find((elt) => params!.name === convertToSlug(elt[0]));
-
-  if (category) {
-    return {
-      props: {
-        categoryName: category[0],
-        gallery: {
-          posts: category[1],
-        },
-      },
-    };
+    props: {
+      slug: category.name,
+    },
   }
+}
 
-  throw new Error('It should not happens the url is not correct in [name].tsx');
-};
-
-export default DisplayPost;
+export default DisplayPost

@@ -36,3 +36,7 @@
 }
 
 @tailwind utilities;
+
+img, svg, video, canvas, audio, iframe, embed, object {
+  display: initial;
+}
