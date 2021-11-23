@@ -18,6 +18,14 @@ steps:
       command: custom
       verbose: false
       customCommand: 'run build:stage'
+  
+  - task: Npm@1
+    displayName: 'npm run export'
+    inputs:
+      command: custom
+      verbose: false
+      customCommand: 'run export'
+    enabled: false
 
   - task: ArchiveFiles@2
     displayName: 'Archive Files'
