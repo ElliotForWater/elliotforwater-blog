@@ -4,8 +4,8 @@
   "scripts": {
     "dev": "next -p 4000",
     "just-build": "next build",
-    "build:stage": "env-cmd -f .env.staging run-s clean just-build export",
-    "build:prod": "env-cmd -f .env.production run-s clean just-build export",
+    "build:stage": "env-cmd -f .env.staging run-s clean just-build",
+    "build:prod": "env-cmd -f .env.production run-s clean just-build",
     "start:stage": "env-cmd -f .env.staging next start",
     "start": "env-cmd -f .env.production next start",
     "export": "next export",
