@@ -5,6 +5,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 
 import fetchContenful from '../../helpers/_fetchContentful'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import { getRichTextRenderOptions } from '../../helpers/_richTextOptions'
 
 import { Content } from '../../components/Content/Content'
 import { Hero } from '../../components/Hero/Hero'
@@ -50,7 +51,7 @@ const DisplayPost = (props: IPostProps) => (
     categoryCollection={props.tags}
   >
     <Content>
-      <div>{documentToReactComponents(props.content.json)}</div>
+      <div>{documentToReactComponents(props.content.json, getRichTextRenderOptions(props.content.links))}</div>
     </Content>
   </RightSidebar>
 )
@@ -92,7 +93,20 @@ export const getStaticProps: GetStaticProps<IPostProps> = async ({ params }) => 
             },
             socialDescription,
             content {
-              json
+              json,
+              links {
+                assets {
+                  block {
+                    fileName
+                    title
+                    description
+                    url
+                    sys {
+                      id
+                    }
+                  }
+                }
+              }
             },
             tagsCollection {
               items {

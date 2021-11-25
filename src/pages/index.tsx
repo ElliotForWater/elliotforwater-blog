@@ -37,7 +37,8 @@ export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
           },
           tagsCollection {
             items {
-              name
+              name,
+              slug
             }
           },
           author {
