@@ -78,22 +78,23 @@ export function getRichTextRenderOptions(links) {
           //   const { tweetId } = entry;
 
           //   return <DynamicTweetEmbed tweetId={tweetId} />;
-          // case "VideoEmbed":
-          //   const { embedUrl, title } = entry;
+          case 'VideoEmbed':
+            /* eslint-disable-next-line no-case-declarations */
+            const { embedUrl, title } = entry
 
-          //   return (
-          //     <div>
-          //       <iframe
-          //         src={embedUrl}
-          //         height="100%"
-          //         width="100%"
-          //         frameBorder="0"
-          //         scrolling="no"
-          //         title={title}
-          //         allowFullScreen={true}
-          //       />
-          //   </div>
-          // )
+            return (
+              <div>
+                <iframe
+                  src={embedUrl}
+                  height='100%'
+                  width='100%'
+                  frameBorder='0'
+                  scrolling='no'
+                  title={title}
+                  allowFullScreen
+                />
+              </div>
+            )
           // case "CodeBlock":
           //   const { language, code } = entry;
           //   return <DynamicCodeBlock language={language} code={code} />;
