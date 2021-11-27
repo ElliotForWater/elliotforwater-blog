@@ -1,16 +1,26 @@
 import React, { useEffect } from 'react'
+import App from 'next/app'
+import Router from 'next/router'
+
 import { UserContext } from '../context/UserContext'
 import type { AppContext, AppProps } from 'next/app'
 import { useUserStateSyncedWithCookies } from '../hooks/useUserStateSyncedWithCookies'
 import { CookieMap } from '../helpers/_cookies'
+import * as gtag from '../helpers/_gtag'
 
 import '../styles/main.css'
 import '../styles/prism-a11y-dark.css'
-import App from 'next/app'
 
 interface ElliotAppProps extends AppProps {
   serverCookies?: CookieMap
 }
+
+// Binding routes events.
+Router.events.on('routeChangeComplete', (url) => {
+  if (process.env.NEXT_PUBLIC_IS_PRODUCTION) {
+    gtag.pageview(document.title, location.href, url)
+  }
+})
 
 // eslint-disable-next-line react/jsx-props-no-spreading
 const ElliotBlog = ({ Component, pageProps, serverCookies }: ElliotAppProps) => {
@@ -18,6 +28,10 @@ const ElliotBlog = ({ Component, pageProps, serverCookies }: ElliotAppProps) => 
 
   useEffect(() => {
     import('../webComponents/CookiePolicy/CookiePolicy')
+
+    if (process.env.NEXT_PUBLIC_IS_PRODUCTION) {
+      gtag.pageview(document.title, location.href, location.pathname + location.search)
+    }
   }, [])
 
   return (
