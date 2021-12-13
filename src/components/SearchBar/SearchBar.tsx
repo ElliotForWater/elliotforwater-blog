@@ -144,7 +144,6 @@ const SearchBar = ({ big }: SearchProps) => {
     setUserState({ numOfSearches: Number(userState.numOfSearches) + 1 })
 
     const queryNoSpace = queryNoWhiteSpace(searchString)
-    console.log(`${process.env.NEXT_PUBLIC_WEBAPP_URL}/search?query=${queryNoSpace}&type=${typeValue}`)
     router.push(`${process.env.NEXT_PUBLIC_WEBAPP_URL}/search?query=${queryNoSpace}&type=${typeValue}`)
     resetDropdown(event)
   }
