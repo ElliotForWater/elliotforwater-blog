@@ -51,7 +51,6 @@ export const getStaticProps: GetStaticProps<IBlogGalleryProps> = async () => {
       }
     }`
   )
-
   const posts = blogEntryCollection.items
   const pagination: IPaginationProps = {}
 

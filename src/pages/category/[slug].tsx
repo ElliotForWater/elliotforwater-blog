@@ -31,7 +31,7 @@ const DisplayCategory = (props: IDisplayPostProps) => {
 
 export const getStaticPaths: GetStaticPaths<ICategoryUrl> = async () => {
   const { tagCollection } = await fetchContenful(
-    'category',
+    'categories',
     `{
         tagCollection {
           items {
@@ -55,7 +55,7 @@ export const getStaticPaths: GetStaticPaths<ICategoryUrl> = async () => {
 
 export const getStaticProps: GetStaticProps<IDisplayPostProps, ICategoryUrl> = async ({ params }) => {
   const { tagCollection } = await fetchContenful(
-    'category',
+    'postByCategoryWater',
     `{
       tagCollection(where: { slug: "${params!.slug}" }, limit: 1) {
         items {

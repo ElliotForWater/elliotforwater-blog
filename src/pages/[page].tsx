@@ -31,7 +31,7 @@ const PaginatePosts = (props: IPaginatePostsProps) => (
 
 export const getStaticPaths: GetStaticPaths<IPageUrl> = async () => {
   const { blogEntryCollection } = await fetchContenful(
-    'post',
+    'blog',
     `{
         blogEntryCollection{
           items {

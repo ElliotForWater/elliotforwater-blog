@@ -58,7 +58,7 @@ const DisplayPost = (props: IPostProps) => (
 
 export const getStaticPaths: GetStaticPaths<IPostUrl> = async () => {
   const { blogEntryCollection } = await fetchContenful(
-    'post',
+    'blog',
     `{
         blogEntryCollection{
           items {
@@ -81,7 +81,7 @@ export const getStaticPaths: GetStaticPaths<IPostUrl> = async () => {
 
 export const getStaticProps: GetStaticProps<IPostProps> = async ({ params }) => {
   const { blogEntryCollection } = await fetchContenful(
-    'post',
+    'blog',
     `{
         blogEntryCollection(where: { slug: "${params!.slug}" }, limit: 1) {
           items {
