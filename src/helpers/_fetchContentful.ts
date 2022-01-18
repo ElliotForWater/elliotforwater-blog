@@ -9,7 +9,7 @@ export async function fetchContenful(page: string, query: string) {
     return await import(`../../__mocks__/contentful/${page}.js`)
   } else {
     try {
-      const res = await fetch(`${contentfulUrl}${space}/environments/master`, {
+      const res = await fetch(`${contentfulUrl}/${space}/environments/master`, {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
