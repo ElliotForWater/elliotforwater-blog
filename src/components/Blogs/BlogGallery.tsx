@@ -15,7 +15,6 @@ const BlogGallery = (props: IBlogGalleryProps) => {
       <div className='max-w-screen-xl px-3 py-12 mx-auto'>
         <ul className='grid grid-cols-1 gap-y-10 lg:grid-cols-2 xl:grid-cols-3'>
           {props.posts.map(({ slug, title, socialDescription, publishDate, heroImage, tagsCollection }) => {
-            console.log(socialDescription, typeof socialDescription)
             return (
               <BlogCard
                 key={slug}
